@@ -6,18 +6,16 @@ var program = require('commander');
 var _ = require('lodash');
 
 var defaults = require('../lib/defaults');
-var parseHtmlMinOptions = require('../lib/htmlminOptionsParser');
 var html2js = require('../index');
 
 program
 	.option('-f, --files [filesGlobPattern]', 'glob pattern to locate files. Quote it to make it work in bash')
 	.option('-o, --output [file]', 'output file. stdout when missing. default stdout')
-	.option('-p, --base-path [path]', 'base path to be used in file url. Empty by default')
+	.option('-p, --key-path-prefix [path]', 'key path prefix to be used in file url. Empty by default')
+	.option('-v, --value-path-prefix [path]', 'value path prefix to be used in file url. Empty by default')
 	.option('-s, --style [style]', 'code type to generate [browser|browserify|es2015]. default is ' + defaults.style)
 	.option('-m, --module-name [name]', 'name of the module. [templates]', 'templates')
 	.option('-i, --ignore-missing', 'when loading files from fileList should missing (or unreadable) files be ignored', defaults.ignoreMissing)
-
-	.option('--no-htmlmin', 'minify html', !defaults.htmlmin)
 
 	.option('--no-new-module', 'reuse existing module instead of creating new one', !defaults.newModule)
 
@@ -55,7 +53,8 @@ var options = _.defaults({
 	moduleName: program.moduleName,
 	serviceType: program.serviceType,
 	newModule: program.newModule,
-	basePath: program.basePath,
+	keyPathPrefix: program.keyPathPrefix,
+	valuePathPrefix: program.valuePathPrefix,
 	qutomark: program.quotmark,
 	whitespace: program.whitespace,
 	prefix: program.prefix,
@@ -63,8 +62,6 @@ var options = _.defaults({
 	filesGlob: resolveGlob(program.files, program.args),
 	fileList: program.args,
 	ignoreMissing: program.ignoreMissing,
-	htmlmin: program.htmlmin,
-	htmlminOptions: parseHtmlMinOptions(program.rawArgs)
 }, defaults);
 
 html2js(options);
