@@ -35,8 +35,8 @@ describe('templateGenerator.spec.js', function () {
 					browserAngular +
 					defaultModuleString +
 					defaultRunString +
-					'\t\t$templateCache.put(\'file1.html\', \'html1\');\n\n' +
-					'\t\t$templateCache.put(\'file2.html\', \'html2\');\n' +
+					'\t\t$templateCache.put(\'file1.html\', require(\'file1.html\'));\n\n' +
+					'\t\t$templateCache.put(\'file2.html\', require(\'file2.html\'));\n' +
 					browserSuffix);
 			})
 			.then(done);
@@ -64,7 +64,7 @@ describe('templateGenerator.spec.js', function () {
 							browserAngular,
 							params.whitespace, '.module(\'templates\', [])\n',
 							params.whitespace, '.run([\'$templateCache\', function($templateCache) {\n',
-							params.whitespace, params.whitespace, '$templateCache.put(\'f.html\', \'f\');\n',
+							params.whitespace, params.whitespace, '$templateCache.put(\'f.html\', require(\'f.html\'));\n',
 							params.whitespace, '}\n',
 							']);', '\n'
 						].join('')
