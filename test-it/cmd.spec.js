@@ -50,39 +50,5 @@ describe('cmd.spec.js', function () {
 
 			done();
 		});
-	});
-
-	it('should ignore missing files', function (done) {
-		var cmdArgs = [
-			'--ignore-missing',
-			'-s browser',
-			'--',
-			'non-existing.file.html'
-		].join(' ');
-
-		exec('bin/cmd.js ' + cmdArgs, function (err, stdout) {
-			expect(err).to.be.null;
-			expect(stdout).to.eql(fs.readFileSync('test-it/expected/browser.empty.js').toString());
-
-			done();
-		});
-	});
-
-	it('should fail on missing files', function (done) {
-		var cmdArgs = [
-			'--',
-			'non-existing.file.html'
-		].join(' ');
-
-		exec('bin/cmd.js ' + cmdArgs, function (err, stdout, stderr) {
-			expect(stdout).to.eql('');
-
-			expect(stderr).to.contain('ENOENT');
-			expect(stderr).to.contain('open \'non-existing.file.html\'');
-
-			expect(err.code).to.eql(1);
-
-			done();
-		});
-	});
+	});	
 });
