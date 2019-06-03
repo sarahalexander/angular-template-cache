@@ -41,6 +41,30 @@ describe('templateGenerator.spec.js', function () {
 			})
 			.then(done);
 	});
+	
+	it('should use given key and value path prefixes', function (done) {
+		//given
+		var options = {keyPathPrefix: '/', valuePathPrefix: '../'};
+		var generator = templateGenerator(_.defaults(options, defaults));
+
+		//when
+		generator([
+			'file1.html',
+			'file2.html'
+		])
+			.then(function (result) {
+				expect(result).to.eql(
+					useStrictString +
+					defaultHeaderString +
+					browserAngular +
+					defaultModuleString +
+					defaultRunString +
+					'\t\t$templateCache.put(\'/file1.html\', require(\'../file1.html\'));\n\n' +
+					'\t\t$templateCache.put(\'/file2.html\', require(\'../file2.html\'));\n' +
+					browserSuffix);
+			})
+			.then(done);
+	});
 
 	[
 		{type: 'spaces', whitespace: '    '},
