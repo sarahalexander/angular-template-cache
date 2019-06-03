@@ -5,7 +5,7 @@ angular-template-cache
 [![dependencies Status](https://david-dm.org/pchudzik/angular-template-cache/status.svg)](https://david-dm.org/pchudzik/angular-template-cache)
 [![devDependencies Status](https://david-dm.org/pchudzik/angular-template-cache/dev-status.svg)](https://david-dm.org/pchudzik/angular-template-cache?type=dev)
 
-Requires all your html files and adds to angular $templateCache in single file.
+Requires all your html files and adds to angular $templateCache in single file. Similar to original angular-template-cache but requires files instead of printing the html, so that webpack can stil handle the html files itself.
  
 **Features**
 * can be run from command line (for example as npm script)
