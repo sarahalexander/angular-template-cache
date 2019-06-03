@@ -11,9 +11,6 @@ describe('cmd.spec.js', function () {
 			var cmdArgs = [
 				'-f "test-it/**html"',
 				'-s ' +style,
-				'--htmlmin-minifyCSS',
-				'--htmlmin-minifyJS',
-				'--htmlmin-collapseWhitespace'
 			].join(' ');
 
 			exec('bin/cmd.js ' + cmdArgs, function(err, stdout) {
@@ -27,9 +24,6 @@ describe('cmd.spec.js', function () {
 	it('should load all files passed as extra args', function(done) {
 		var cmdArgs = [
 			'-s browser',
-			'--htmlmin-minifyCSS',
-			'--htmlmin-minifyJS',
-			'--htmlmin-collapseWhitespace',
 			'--',
 			'test-it/first.html',
 			'test-it/second.html'
@@ -45,9 +39,6 @@ describe('cmd.spec.js', function () {
 	it('should load all html files from current folder if no glob pattern nor file list provided', function (done) {
 		var cmdArgs = [
 			'-s browser',
-			'--htmlmin-minifyCSS',
-			'--htmlmin-minifyJS',
-			'--htmlmin-collapseWhitespace'
 		].join(' ');
 
 		exec('(cd test-it && ../bin/cmd.js ' + cmdArgs + ')', function(err, stdout) {
