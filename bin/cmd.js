@@ -15,8 +15,6 @@ program
 	.option('-v, --value-path-prefix [path]', 'value path prefix to be used in file url. Empty by default')
 	.option('-s, --style [style]', 'code type to generate [browser|browserify|es2015]. default is ' + defaults.style)
 	.option('-m, --module-name [name]', 'name of the module. [templates]', 'templates')
-	.option('-i, --ignore-missing', 'when loading files from fileList should missing (or unreadable) files be ignored', defaults.ignoreMissing)
-
 	.option('--no-new-module', 'reuse existing module instead of creating new one', !defaults.newModule)
 
 	.option('--no-strict', 'skip use strict expression', !defaults.strict)
@@ -60,8 +58,7 @@ var options = _.defaults({
 	prefix: program.prefix,
 	suffix: program.suffix,
 	filesGlob: resolveGlob(program.files, program.args),
-	fileList: program.args,
-	ignoreMissing: program.ignoreMissing,
+	fileList: program.args
 }, defaults);
 
 html2js(options);
