@@ -5,8 +5,8 @@
 angular
 	.module('templates', [])
 	.run(['$templateCache', function($templateCache) {
-		$templateCache.put('test-it/first.html', '<style>p{background:red}</style><p class="custom class">Custom file</p>');
+		$templateCache.put('test-it/first.html', require('test-it/first.html'));
 
-		$templateCache.put('test-it/second.html', '<script>alert("hello world")</script><div><b>hello</b></div>');
+		$templateCache.put('test-it/second.html', require('test-it/second.html'));
 	}
 ]);
