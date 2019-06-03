@@ -25,8 +25,8 @@ describe('templateGenerator.spec.js', function () {
 
 		//when
 		generator([
-			{path: 'file1.html', html: '\'html1\''},
-			{path: 'file2.html', html: '\'html2\''}
+			'file1.html',
+			'file2.html'
 		])
 			.then(function (result) {
 				expect(result).to.eql(
@@ -53,7 +53,7 @@ describe('templateGenerator.spec.js', function () {
 			var generator = templateGenerator(_.defaults(options, defaults));
 
 			//when
-			generator([{path: 'f.html', html: '\'f\''}])
+			generator(['f.html'])
 
 			//then
 				.then(function (result) {
